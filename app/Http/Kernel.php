@@ -50,8 +50,13 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
 
-        'login' => \App\Http\Middleware\LoginMiddleware::class,
-        'admin' => \App\Http\Middleware\AuthenticateMiddleware::class,
+        // 'login' => \App\Http\Middleware\LoginMiddleware::class,
+        // 'admin' => \App\Http\Middleware\AuthenticateMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,          // nếu bạn có phân quyền admin
+        'auth.check' => \App\Http\Middleware\AuthenticateMiddleware::class, // chỉ check login
+        'login' => \App\Http\Middleware\LoginMiddleware::class,         // alias 'login' dùng cho route /admin (login page)
+
+
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
